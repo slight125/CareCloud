@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Make an Appointment - Medilab{% endblock %}
+
+{% block content %}
+<!-- Page Title -->
+<div class="page-title" data-aos="fade" style="background-color: #f8f9fa; padding: 60px 0;">
+  <div class="container">
+    <h1>Make an Appointment</h1>
+    <nav class="breadcrumbs">
+      <ol>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="current">Appointment</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- Appointment Section -->
+<section id="appointment" class="appointment section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Appointment</h2>
+    <p>Schedule your appointment with our healthcare professionals</p>
+  </div><!-- End Section Title -->
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <form method="post" action="{% url 'appointment' %}">
+      {% csrf_token %}
+      
+      {% if form.errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Please correct the following errors:</strong>
+          <ul class="mb-0">
+            {% for field in form %}
+              {% for error in field.errors %}
+                <li>{{ field.label }}: {{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endif %}
+      
+      <div class="row">
+        <div class="col-md-4 form-group">
+          {{ form.patient_first_name }}
+          {% if form.patient_first_name.errors %}
+            <div class="text-danger small">{{ form.patient_first_name.errors.0 }}</div>
+          {% endif %}
+        </div>
+        <div class="col-md-4 form-group mt-3 mt-md-0">
+          {{ form.patient_last_name }}
+          {% if form.patient_last_name.errors %}
+            <div class="text-danger small">{{ form.patient_last_name.errors.0 }}</div>
+          {% endif %}
+        </div>
+        <div class="col-md-4 form-group mt-3 mt-md-0">
+          {{ form.patient_email }}
+          {% if form.patient_email.errors %}
+            <div class="text-danger small">{{ form.patient_email.errors.0 }}</div>
+          {% endif %}
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4 form-group mt-3">
+          {{ form.patient_phone }}
+          {% if form.patient_phone.errors %}
+            <div class="text-danger small">{{ form.patient_phone.errors.0 }}</div>
+          {% endif %}
+        </div>
+        <div class="col-md-4 form-group mt-3">
+          {{ form.date_of_birth }}
+          {% if form.date_of_birth.errors %}
+            <div class="text-danger small">{{ form.date_of_birth.errors.0 }}</div>
+          {% endif %}
+        </div>
+        <div class="col-md-4 form-group mt-3">
+          {{ form.appointment_date }}
+          {% if form.appointment_date.errors %}
+            <div class="text-danger small">{{ form.appointment_date.errors.0 }}</div>
+          {% endif %}
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6 form-group mt-3">
+          {{ form.doctor }}
+          {% if form.doctor.errors %}
+            <div class="text-danger small">{{ form.doctor.errors.0 }}</div>
+          {% endif %}
+        </div>
+        <div class="col-md-6 form-group mt-3">
+          {{ form.reason_for_visit }}
+          {% if form.reason_for_visit.errors %}
+            <div class="text-danger small">{{ form.reason_for_visit.errors.0 }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="form-group mt-3">
+        {{ form.medical_history }}
+        {% if form.medical_history.errors %}
+          <div class="text-danger small">{{ form.medical_history.errors.0 }}</div>
+        {% endif %}
+      </div>
+      
+      <div class="mt-3">
+        <div class="text-center"><button type="submit" class="btn btn-primary">Make an Appointment</button></div>
+      </div>
+    </form>
+
+  </div>
+
+</section><!-- /Appointment Section -->
+{% endblock %}

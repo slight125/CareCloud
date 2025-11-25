@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Doctors - Medilab{% endblock %}
+
+{% block content %}
+<!-- Page Title -->
+<div class="page-title" data-aos="fade" style="background-color: #f8f9fa; padding: 60px 0;">
+  <div class="container">
+    <h1>Doctors</h1>
+    <nav class="breadcrumbs">
+      <ol>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="current">Doctors</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- Doctors Section -->
+<section id="doctors" class="doctors section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Doctors</h2>
+    <p>Meet our team of experienced medical professionals</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+
+    <div class="row gy-4">
+
+      {% for doctor in doctors %}
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="team-member d-flex align-items-start">
+          <div class="pic"><img src="{% static 'assets/img/doctors/doctors-1.jpg' %}" class="img-fluid" alt=""></div>
+          <div class="member-info">
+            <h4>Dr. {{ doctor.first_name }} {{ doctor.last_name }}</h4>
+            <span>{{ doctor.specialty }}</span>
+            <p>Experienced professional in {{ doctor.specialty }}</p>
+            <div class="social">
+              <a href=""><i class="bi bi-twitter-x"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""> <i class="bi bi-linkedin"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Team Member -->
+      {% empty %}
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="team-member d-flex align-items-start">
+          <div class="pic"><img src="{% static 'assets/img/doctors/doctors-1.jpg' %}" class="img-fluid" alt=""></div>
+          <div class="member-info">
+            <h4>Walter White</h4>
+            <span>Chief Medical Officer</span>
+            <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+            <div class="social">
+              <a href=""><i class="bi bi-twitter-x"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""> <i class="bi bi-linkedin"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Team Member -->
+
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="team-member d-flex align-items-start">
+          <div class="pic"><img src="{% static 'assets/img/doctors/doctors-2.jpg' %}" class="img-fluid" alt=""></div>
+          <div class="member-info">
+            <h4>Sarah Jhonson</h4>
+            <span>Anesthesiologist</span>
+            <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+            <div class="social">
+              <a href=""><i class="bi bi-twitter-x"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""> <i class="bi bi-linkedin"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Team Member -->
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</section><!-- /Doctors Section -->
+{% endblock %}
